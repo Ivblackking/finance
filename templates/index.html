@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<table class = "table table-striped">
+    <thead id = "home-th">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- TODO: Loop through the database entries to display them in this table -->
+        {% for row in shares %}
+        <tr>
+            <td>{{row.symbol}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.shares}}</td>
+            <td>{{row.price | usd}}</td>
+            <td>{{(row.shares * row.price) | usd}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table id = "info">
+    <thead>
+        <tr>
+            <th>Cash</th>
+            <th>Total</th>
+        </tr>
+    <thead>
+    <tbody>
+        <tr>
+            <td>{{cash | usd}}</td>
+            <td>{{total | usd}}</td>
+        </tr>
+    <tbody>
+</table>
+{% endblock %}
